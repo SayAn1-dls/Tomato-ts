@@ -298,18 +298,22 @@ sequenceDiagram
 ### Activity Diagram
 ```mermaid
 activityDiagram
-    state "Not Logged In" as "Logged Out"
-    
-    User->>LoginPopup: Clicks sign in
-    LoginPopup->>Backend: POST /api/user/login
-    Backend->>Database: Validate credentials
-    Backend-->>LoginPopup: Success with token
-    LoginPopup->>StoreContext: Set token
-    StoreContext->>state "Logged In"
-    
-    User->>Navbar: Clicks sign out
-    Navbar->>StoreContext: Clear token
-    StoreContext->>state "Logged Out"
+    (*) --> "Not Logged In"
+    state "Not Logged In" {
+        User --> "Click Sign In"
+        "Click Sign In" --> "Open Login Popup"
+        "Open Login Popup" --> "Submit Credentials"
+        "Submit Credentials" --> "Validate Credentials"
+        "Validate Credentials" --> "Success? Yes" : "Logged In"
+        "Validate Credentials" --> "Success? No" : "Error Message"
+        "Error Message" --> "Submit Credentials"
+    }
+    state "Logged In" {
+        User --> "Click Sign Out"
+        "Click Sign Out" --> "Clear Token"
+        "Clear Token" --> "Not Logged In"
+    }
+    "Logged In" --> (*)
 ```
 
 ## 🔍 Problem Statement & Solution
