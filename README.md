@@ -158,21 +158,53 @@ npm run build
 - **RESTful API Design** - Scalable endpoint architecture
 - **Environment-based Configuration** - Easy deployment across environments
 
-## Team Member Names and Contributions
+## 👨‍💻 Team Members & Contributions
 
-**Lead Developer: Sayan Bhattacharya**
-- **Role**: Full-stack Developer & Project Architect
-- **Contributions**:
-  - Complete full-stack architecture design and implementation
-  - React component development with modern hooks and patterns
-  - Backend API development with Express.js and MongoDB
-  - Authentication system implementation with JWT
-  - Payment integration with Stripe
-  - File upload system for food images
-  - Admin portal development for restaurant management
-  - Database schema design and optimization
-  - Error handling and validation throughout the application
-  - Responsive UI design with modern CSS
+### 🧠 Sayan Bhattacharya — Lead Developer & Project Architect
+
+* Designed and implemented the complete full-stack architecture
+* Developed frontend using React with modern hooks and component-based structure
+* Built backend APIs using Express.js and MongoDB
+* Implemented secure authentication system using JWT
+* Integrated Stripe for payment processing
+* Developed file upload system for food images
+* Built admin dashboard for restaurant and order management
+* Designed and optimized database schema
+* Implemented error handling and validation across the application
+* Created responsive and modern UI
+
+---
+
+### 🏗️ Debasish Karn — Project Architect
+
+* Contributed to system architecture planning and design
+* Assisted in defining scalable and maintainable project structure
+* Supported technical decision-making for backend and system flow
+
+---
+
+### 🎨 Saswataduity Bhuin — Project Designer
+
+* Designed UI/UX of the application
+* Created user-friendly layouts and visual elements
+* Improved overall user experience and interaction flow
+
+---
+
+### 🧪 Rishav Dewan — Tester & Debugger
+
+* Tested application features across different scenarios
+* Identified and resolved bugs in both frontend and backend
+* Ensured application stability and performance
+
+---
+
+### 📋 Siddhant Giri — Project Manager
+
+* Managed team coordination and workflow
+* Assigned tasks and tracked progress
+* Ensured timely completion of project milestones
+
 
 ---
 
