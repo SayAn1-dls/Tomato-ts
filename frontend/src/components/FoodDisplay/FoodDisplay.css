@@ -12,3 +12,22 @@
     gap: 30px;
     row-gap: 50px;
 }
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.no-results p {
+    font-size: 18px;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.no-results p:first-child {
+    font-size: 20px;
+    font-weight: 600;
+    color: #49557E;
+}
