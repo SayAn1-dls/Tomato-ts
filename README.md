@@ -1,937 +1,623 @@
-#  Tomato Food Delivery App
+# Tomato — Food Delivery Platform
 
-A modern, full-stack food delivery application built with React, Node.js, and MongoDB.
+Full-stack food ordering application built with React, Node.js, and MongoDB. Supports menu browsing, cart management, Stripe payments, and an admin portal for restaurant management.
 
-##  Project Overview
-
-Tomato is a comprehensive food ordering platform that allows users to browse menu items, search for specific dishes, add items to cart, and place orders. The application features a responsive design with modal-based food item details and a seamless checkout experience.
-
-##  Tech Stack
-
-### Frontend
-- **React 18.2.0** - UI framework with hooks and context API
-- **TypeScript** - Type safety and better development experience
-- **Vite** - Fast build tool and development server
-- **React Router DOM** - Client-side routing
-- **Axios** - HTTP client for API communication
-- **React Toastify** - User notifications and alerts
-- **CSS3** - Modern styling with responsive design
-
-### Backend
-- **Node.js** - JavaScript runtime environment
-- **Express.js** - Web application framework
-- **MongoDB** - NoSQL database for data persistence
-- **Mongoose** - MongoDB object modeling tool
-- **JWT** - Authentication and authorization
-- **Stripe** - Payment processing integration
-- **Multer** - File upload handling
-- **CORS** - Cross-origin resource sharing
-
-### Development Tools
-- **ESLint** - Code quality and consistency
-- **Nodemon** - Auto-restart development server
-- **Git** - Version control and collaboration
-
-##  Features
-
-### Core Functionality
-- ** Food Menu**: Browse items by category (Salad, Rolls, Pasta, etc.)
-- ** Search**: Real-time search across food names, categories, and descriptions
-- ** Cart Management**: Add/remove items with quantity tracking
-- ** Modal Details**: Click food items for detailed view with quantity selector
-- ** User Authentication**: Login, registration, and profile management
-- ** Responsive Design**: Mobile-friendly interface with adaptive layouts
-- ** Real-time Updates**: Live cart synchronization across components
-- ** Local Storage**: Cart persistence across browser sessions
-
-### Advanced Features
-- ** Category Filtering**: Dynamic menu filtering by food categories
-- ** Order History**: Track and view previous orders
-- ** UI/UX**: Modern design with smooth animations and transitions
-- ** Security**: JWT-based authentication with secure token handling
-- ** Smart Cart**: Automatic price calculation and delivery charges
-
-##  Architecture
-
-### System Design
-The application follows a **layered architecture** with clear separation of concerns:
-
-```
-┌─────────────────┐
-│   Frontend    │  React SPA with Vite
-│   (Client)     │  - Component-based UI
-│               │  - Context API for state
-│               │  - React Router for navigation
-├─────────────────┤
-│   Backend     │  Node.js REST API
-│   (Server)    │  - Express.js framework
-│               │  - MongoDB database
-│               │  - JWT authentication
-│               │  - Stripe payments
-└─────────────────┘
-```
-
-### Data Flow
-```
-User Interface → React Components → Context API → HTTP Requests → Express API → MongoDB
-```
-
-##  Installation & Setup
-
-### Prerequisites
-- **Node.js** (v16 or higher)
-- **npm** (v8 or higher)
-- **MongoDB** (v5.0 or higher)
-
-### Quick Start
-```bash
-# Clone the repository
-git clone https://github.com/SayAn1-dls/Tomato-ts.git
-
-# Install dependencies
-cd Tomato-ts
-npm install
-
-# Start backend
-cd backend
-npm install
-npm run server
-
-# Start frontend (new terminal)
-cd frontend
-npm install
-npm run dev
-```
-
-### Environment Setup
-```bash
-# Backend environment variables
-cd backend
-cp .env.example .env
-# Edit .env with your MongoDB URI and other secrets
-
-# Frontend environment variables
-cd frontend
-cp .env.example .env
-# Edit .env with your API URL and other config
-```
-
-## 📁 Project Structure
-
-```
-Tomato-ts/
-├── 📁 README.md
-├── 📁 .gitignore
-├── 📁 vercel.json
-├── 📂 backend/
-│   ├── 📁 controllers/
-│   ├── 📁 middleware/
-│   ├── 📁 models/
-│   ├── 📁 routes/
-│   ├── 📁 server.js
-│   ├── 📁 package.json
-│   └── 📁 addSampleFood.js
-└── 📂 frontend/
-    ├── 📁 public/
-    ├── 📁 src/
-    │   ├── 📁 components/
-    │   │   ├── 📁 FoodItem/
-    │   │   ├── 📁 FoodItemModal/
-    │   │   ├── 📁 FoodDisplay/
-    │   │   ├── 📁 Navbar/
-    │   │   ├── 📁 Footer/
-    │   │   └── 📁 ...other components
-    │   ├── 📁 pages/
-    │   │   ├── 📁 Home/
-    │   │   ├── 📁 Cart/
-    │   │   └── 📁 ...other pages
-    │   ├── 📁 Context/
-    │   ├── 📁 assets/
-    │   └── 📁 ...other utilities
-    ├── 📁 package.json
-    └── 📁 vite.config.js
-```
-
-##  Development Workflow
-
-### 1. Development Environment
-- **Local Development**: Full stack running on localhost
-- **Hot Reload**: Vite HMR for instant frontend updates
-- **API Testing**: Backend endpoints accessible for development
-
-### 2. Code Quality
-- **ESLint**: Enforced coding standards and best practices
-- **TypeScript**: Type safety and better IDE support
-- **Git Hooks**: Pre-commit checks for code quality
-
-### 3. Testing Strategy
-- **Unit Testing**: Component testing with React Testing Library
-- **Integration Testing**: API endpoint testing
-- **E2E Testing**: Full user workflow testing
-
-##  OOP Concepts Applied
-
-### 1. Encapsulation
-- **Context API**: Cart and authentication state encapsulated in StoreContext
-- **Component Props**: Data passed through props with proper validation
-- **Private Methods**: Internal state management hidden from external access
-
-### 2. Inheritance & Composition
-- **React Hooks**: Reusable logic through custom hooks
-- **Component Composition**: Building complex UI from simple components
-- **Higher-Order Components**: Cross-cutting concerns implementation
-
-### 3. Polymorphism
-- **Dynamic Routing**: Different routes render different components
-- **Flexible Components**: Same component handles different data types
-- **API Abstraction**: Consistent interface for different operations
-
-##  Design Patterns Implemented
-
-### 1. Observer Pattern
-- **Context Subscription**: Components react to global state changes
-- **Event-Driven**: User actions trigger state updates across app
-
-### 2. Factory Pattern
-- **Component Creation**: Dynamic component instantiation based on type
-- **Service Layer**: API service abstraction for different operations
-
-### 3. Singleton Pattern
-- **Context Provider**: Single source of truth for application state
-- **API Client**: Centralized HTTP client configuration
-
-##  SOLID Principles
-
-###  Single Responsibility Principle
-- **Component Separation**: Each component handles one specific task
-- **Service Separation**: API services separated by functionality
-- **Controller Separation**: Each endpoint handles specific resource
-
-###  Open/Closed Principle
-- **Component Extensibility**: New features added without modifying existing code
-- **API Flexibility**: New endpoints added without breaking existing ones
-- **Database Schema**: Easily extendable for new food item types
-
-###  Liskov Substitution Principle
-- **Interface Segregation**: Specific interfaces for different use cases
-- **Component Interfaces**: Props defined as interfaces for type safety
-- **Service Abstractions**: High-level and low-level service separation
-
-###  Dependency Inversion Principle
-- **Dependency Injection**: Context provides dependencies to components
-- **Configuration**: Environment-based dependency management
-- **Testing**: Mock implementations for testing isolation
-
-##  UML Diagrams
-
-### Class Diagram
-```mermaid
-classDiagram
-    class User {
-        +id: String
-        +email: String
-        +token: String
-        +login()
-        +logout()
-    }
-    
-    class FoodItem {
-        +id: String
-        +name: String
-        +price: Number
-        +category: String
-        +image: String
-        +description: String
-    }
-    
-    class Cart {
-        +items: Map~String, Number~
-        +addItem(itemId: String, quantity: Number)
-        +removeItem(itemId: String)
-        +getTotal(): Number
-        +persist()
-    }
-    
-    class StoreContext {
-        +foodItems: Array~FoodItem~
-        +cartItems: Object
-        +user: User
-        +token: String
-        +addToCart(itemId: String)
-        +removeFromCart(itemId: String)
-    }
-    
-    User "1" --|> LoginPopup : uses
-    User "1" --> StoreContext : provides
-    StoreContext "1" --> FoodItem : provides
-    StoreContext "1" --> Cart : provides
-    StoreContext "1" --> Navbar : provides
-    
-    User "1" --> FoodDisplay : uses
-    User "1" --> Cart : uses
-```
-
-### Use Case Diagram
-```mermaid
-sequenceDiagram
-    participant User
-    participant Frontend
-    participant Backend
-    participant Database
-    
-    User->>Frontend: Clicks food item
-    Frontend->>Frontend: Opens FoodItemModal
-    Frontend->>Backend: POST /api/cart/add
-    Backend->>Database: Save cart item
-    Backend-->>Frontend: Success response
-    Frontend->>Frontend: Updates cart state
-    Frontend->>User: Shows updated cart
-    
-    User->>Frontend: Clicks cart icon
-    Frontend->>Frontend: Navigates to /cart
-    Frontend->>Backend: GET /api/cart/get
-    Backend->>Database: Retrieve cart items
-    Backend-->>Frontend: Cart data
-    Frontend->>User: Displays cart contents
-```
-
-### Activity Diagram
-```mermaid
-activityDiagram
-    (*) --> "Not Logged In"
-    state "Not Logged In" {
-        User --> "Click Sign In"
-        "Click Sign In" --> "Open Login Popup"
-        "Open Login Popup" --> "Submit Credentials"
-        "Submit Credentials" --> "Validate Credentials"
-        "Validate Credentials" --> "Success? Yes" : "Logged In"
-        "Validate Credentials" --> "Success? No" : "Error Message"
-        "Error Message" --> "Submit Credentials"
-    }
-    state "Logged In" {
-        User --> "Click Sign Out"
-        "Click Sign Out" --> "Clear Token"
-        "Clear Token" --> "Not Logged In"
-    }
-    "Logged In" --> (*)
-```
-
-## 🔍 Problem Statement & Solution
-
-### Problem
-Users needed a seamless food ordering experience with:
-- Intuitive food browsing and discovery
-- Easy cart management with real-time updates
-- Secure authentication and checkout process
-- Responsive design for mobile compatibility
-
-### Solution Approach
-1. **Modular Architecture**: Separated frontend and backend with clear API contracts
-2. **State Management**: Implemented React Context for global state synchronization
-3. **Component-Based Design**: Reusable components with clear responsibilities
-4. **Progressive Enhancement**: Added features incrementally without breaking existing functionality
-5. **Performance Optimization**: Implemented lazy loading and efficient data fetching
-
-##  Testing Results
-
-### Test Cases
-- ✅ **Food Display**: All categories render correctly with proper filtering
-- ✅ **Search Functionality**: Real-time search across all food properties
-- ✅ **Cart Operations**: Add/remove items with immediate UI updates
-- ✅ **Authentication Flow**: Login/logout with proper token management
-- ✅ **Modal Interactions**: Food item details with quantity selection
-- ✅ **Responsive Design**: Mobile and desktop compatibility verified
-- ✅ **Data Persistence**: Cart survives browser refresh and sessions
-
-### Performance Metrics
-- **Load Time**: < 2 seconds for initial page load
-- **Search Response**: < 500ms for real-time filtering
-- **Cart Updates**: Immediate UI synchronization
-- **Memory Usage**: Optimized with efficient state management
-
-## Deployment & Production
-
-### Vercel Deployment
-- **Frontend URL**: https://tomato-ts-9jwz.vercel.app/
-- **Backend URL**: https://tomato-backend.vercel.app (not deploy till now)
-- **Environment**: Production-optimized builds with mock data fallback
-- **CI/CD**: Automated testing and deployment pipeline
-
-### Environment Configuration
-```javascript
-// Production
-VITE_API_URL=https://tomato-backend.vercel.app/api
-
-// Development  
-VITE_API_URL=http://localhost:5002
-```
-
-##  Contributing Guidelines
-
-### Development Standards
-- **Code Style**: ESLint configuration with React and TypeScript rules
-- **Commit Messages**: Conventional commits with clear descriptions
-- **Branch Strategy**: Feature branches with pull requests
-- **Testing**: Unit tests required for new features
-
-### How to Contribute
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature-name`
-3. **Make** changes: Follow coding standards and test thoroughly
-4. **Commit** changes: `git commit -m "feat: add new feature"`
-5. **Push** branch: `git push origin feature-name`
-6. **Create** Pull Request: Submit for code review
-
-##  License & Credits
-
-### License
-This project is licensed under the **MIT License** - see LICENSE file for details.
-
-### Team Contributions
-- **Frontend Development**: React components, state management, UI/UX
-- **Backend Development**: API design, database architecture, authentication
-- **DevOps**: Deployment pipeline, environment configuration
-- **Testing**: Quality assurance and user experience testing
+**Live:** [tomato-ts-9jwz.vercel.app](https://tomato-ts-9jwz.vercel.app/)
 
 ---
 
-##  MANDATORY DELIVERABLES
+## Table of Contents
 
-1.  **GitHub Repository**: Complete, well-structured codebase with proper version control
-2.  **README File**: Comprehensive project documentation including:
-   - Project title and overview
-   - Complete tech stack (languages, frameworks, database, tools)
-   - Setup and installation instructions
-   - How to run the project
-   - Architecture explanation
-   - Team member names and contributions
-3.  **Project Report (PDF)** covering:
-   - System Design optimization: How you applied System Design principles to improve scalability, performance, or architecture
-   - OOP concepts used: Which OOP principles (Encapsulation, Inheritance, Polymorphism, Abstraction) you applied and where
-   - Design Patterns: Which patterns you implemented (at least 2) and why
-   - SOLID Principles: How each of the 5 SOLID principles is reflected in your codebase
-   - UML Diagrams: Class Diagram, Use Case Diagram, Sequence Diagram, Activity Diagram, ER Diagram (if applicable)
-4.  **Live Demo**: You'll demonstrate your working project during the final evaluation
-5.  **Full Rubric**: Complete evaluation criteria will be shared separately on Slack
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [System Architecture](#system-architecture)
+- [UML Diagrams](#uml-diagrams)
+- [OOP Concepts](#oop-concepts)
+- [Design Patterns](#design-patterns)
+- [SOLID Principles](#solid-principles)
+- [Setup and Installation](#setup-and-installation)
+- [Development Workflow](#development-workflow)
+- [Deployment](#deployment)
+- [Team](#team)
 
 ---
-
-** Ready for Production: A complete, scalable, and maintainable food delivery application built with modern development practices and architectural principles.**
 
 ## Tech Stack
 
-### Languages
-- **JavaScript/ES6+** - Frontend and backend development
-- **JSX** - React component syntax
+| Layer | Technology | Version |
+|---|---|---|
+| Frontend UI | React | 18.2.0 |
+| Type Safety | TypeScript | 5.x |
+| Build Tool | Vite | 5.0.8 |
+| Routing | React Router DOM | 6.22.0 |
+| HTTP Client | Axios | 1.6.7 |
+| Notifications | React Toastify | 10.0.4 |
+| Runtime | Node.js | 18+ |
+| API Framework | Express.js | 4.18.2 |
+| Database | MongoDB | 8.1.1 |
+| ODM | Mongoose | latest |
+| Authentication | JWT (jsonwebtoken) | 9.0.2 |
+| Password Hashing | bcrypt | 5.1.1 |
+| Payment Gateway | Stripe | 14.17.0 |
+| File Upload | Multer | 1.4.5 |
+| Input Validation | validator | 13.11.0 |
+| Dev Server | Nodemon | 3.0.3 |
+| Env Management | dotenv | 16.4.1 |
+| Linting | ESLint | latest |
 
-### Frontend Frameworks
-- **React 18.2.0** - Modern UI framework with hooks
-- **Vite 5.0.8** - Fast build tool and development server
-- **React Router DOM 6.22.0** - Client-side routing
-- **React Toastify 10.0.4** - User notification system
+---
 
-### Backend Technologies
-- **Node.js** - JavaScript runtime environment
-- **Express.js 4.18.2** - Web application framework
-- **Nodemon 3.0.3** - Development server auto-restart
+## Project Structure
 
-### Database
-- **MongoDB 8.1.1** - NoSQL database for data storage
-- **Mongoose** - MongoDB object modeling and schema validation
+```
+Tomato-ts/
+├── backend/
+│   ├── config/
+│   │   └── db.js                  # MongoDB connection
+│   ├── controllers/
+│   │   ├── foodController.js
+│   │   ├── userController.js
+│   │   ├── cartController.js
+│   │   └── orderController.js
+│   ├── middleware/
+│   │   └── auth.js                # JWT verification middleware
+│   ├── models/
+│   │   ├── foodModel.js
+│   │   ├── userModel.js
+│   │   └── orderModel.js
+│   ├── routes/
+│   │   ├── foodRoute.js
+│   │   ├── userRoute.js
+│   │   ├── cartRoute.js
+│   │   └── orderRoute.js
+│   └── server.js
+├── frontend/
+│   └── src/
+│       ├── components/            # Reusable UI components
+│       ├── pages/                 # Route-level page components
+│       ├── Context/
+│       │   └── StoreContext.jsx   # Global state provider
+│       ├── services/              # API abstraction layer
+│       ├── patterns/              # Observer, ServiceFactory
+│       └── models/
+│           └── types.ts           # TypeScript type definitions
+├── admin/
+│   └── src/
+│       ├── components/
+│       └── pages/
+│           ├── Add/               # Add food items
+│           ├── List/              # List all food
+│           └── Orders/            # Manage orders
+└── vercel.json
+```
 
-### Authentication & Security
-- **JWT (jsonwebtoken 9.0.2)** - Token-based authentication
-- **bcrypt 5.1.1** - Password hashing
-- **validator 13.11.0** - Input validation
+---
 
-### Payment Processing
-- **Stripe 14.17.0** - Payment gateway integration
-- **@stripe/stripe-js 3.0.3** - Frontend Stripe SDK
+## System Architecture
 
-### File Handling
-- **Multer 1.4.5-lts.1** - File upload middleware
-- **fs** - File system operations
+> **Three-tier architecture** — presentation, business logic, and data are separated into distinct layers with clear contracts between them.
 
-### API Communication
-- **Axios 1.6.7** - HTTP client for API requests
-- **CORS 2.8.5** - Cross-origin resource sharing
+```mermaid
+graph TB
+    subgraph Clients["Presentation Layer"]
+        FE["Frontend\nReact + TypeScript\nPort 5173"]
+        AD["Admin Portal\nReact\nPort 5174"]
+    end
 
-### Development Tools
-- **ESLint** - Code linting and quality checks
-- **dotenv 16.4.1** - Environment variable management
-- **body-parser 1.20.2** - Request body parsing
+    subgraph Server["Business Logic Layer"]
+        BE["Express.js REST API\nPort 5002"]
+        MW["Auth Middleware\nJWT Verification"]
+        BE --> MW
+    end
 
-## Setup and Installation Instructions
+    subgraph Data["Data Layer"]
+        MDB["MongoDB\nMongoose ODM"]
+    end
+
+    subgraph External["External Services"]
+        STR["Stripe\nPayment Gateway"]
+        FS["File System\nMulter Uploads"]
+    end
+
+    FE -->|"HTTP / JSON"| BE
+    AD -->|"HTTP / JSON"| BE
+    BE -->|"Mongoose"| MDB
+    BE -->|"Checkout Session"| STR
+    BE -->|"Image Upload"| FS
+```
+
+**Glossary**
+- **REST API** — Stateless interface where each HTTP request contains all information needed to process it.
+- **ODM (Object-Document Mapper)** — Maps JavaScript objects to MongoDB documents; Mongoose is the ODM used here.
+- **JWT (JSON Web Token)** — Compact, URL-safe token used for stateless authentication between client and server.
+- **Middleware** — Function in the request pipeline that intercepts and processes requests before they reach the route handler.
+
+---
+
+## UML Diagrams
+
+### Class Diagram
+
+> Represents the static structure of the system — classes, their attributes, methods, and relationships.
+
+```mermaid
+classDiagram
+    class FoodModel {
+        +String name
+        +String description
+        +Number price
+        +String image
+        +String category
+    }
+
+    class UserModel {
+        +String name
+        +String email
+        +String password
+        +Object cartData
+    }
+
+    class OrderModel {
+        +String userId
+        +Array items
+        +Number amount
+        +Object address
+        +String status
+        +Date date
+        +Boolean payment
+    }
+
+    class FoodController {
+        +addFood(req, res)
+        +listFood(req, res)
+        +removeFood(req, res)
+    }
+
+    class UserController {
+        +registerUser(req, res)
+        +loginUser(req, res)
+    }
+
+    class CartController {
+        +addToCart(req, res)
+        +removeFromCart(req, res)
+        +getCart(req, res)
+    }
+
+    class OrderController {
+        +placeOrder(req, res)
+        +verifyOrder(req, res)
+        +userOrders(req, res)
+        +listOrders(req, res)
+        +updateStatus(req, res)
+    }
+
+    class AuthMiddleware {
+        +authMiddleware(req, res, next)
+    }
+
+    class StoreContext {
+        +Array food_list
+        +Object cartItems
+        +String token
+        +String url
+        +addToCart(itemId)
+        +removeFromCart(itemId)
+        +getTotalCartAmount()
+        +loadCartData(token)
+    }
+
+    class ApiService {
+        +String baseURL
+        +get(endpoint)
+        +post(endpoint, data)
+        +delete(endpoint)
+    }
+
+    UserModel "1" --> "0..*" OrderModel : places
+    OrderModel "0..*" --> "0..*" FoodModel : contains
+    FoodController --> FoodModel : uses
+    UserController --> UserModel : uses
+    CartController --> UserModel : uses
+    OrderController --> OrderModel : uses
+    OrderController --> UserModel : uses
+    AuthMiddleware ..> CartController : guards
+    AuthMiddleware ..> OrderController : guards
+    StoreContext --> ApiService : delegates HTTP to
+    StoreContext --> FoodModel : displays
+```
+
+**Glossary**
+- **Controller** — Handles incoming HTTP requests and delegates to models; keeps route handlers thin.
+- **Model** — Mongoose schema that defines the shape of a MongoDB document and enforces data validation.
+- **Composition (`-->`)** — One class holds a reference to another and uses its behavior.
+- **Dependency (`..>`)** — One class depends on another without owning it (e.g., middleware guards a controller).
+
+---
+
+### Use Case Diagram
+
+> Shows what actors can do in the system — captures functional requirements without implementation detail.
+
+```mermaid
+graph LR
+    Customer(["Customer"])
+    Admin(["Admin"])
+
+    subgraph Auth["Authentication"]
+        UC1["Register"]
+        UC2["Login / Logout"]
+    end
+
+    subgraph Menu["Menu"]
+        UC3["Browse Food Items"]
+        UC4["Filter by Category"]
+        UC5["Search Food"]
+        UC6["View Item Details"]
+    end
+
+    subgraph CartFlow["Cart"]
+        UC7["Add Item to Cart"]
+        UC8["Remove Item from Cart"]
+        UC9["View Cart"]
+    end
+
+    subgraph Orders["Orders"]
+        UC10["Place Order"]
+        UC11["Pay via Stripe"]
+        UC12["Track Order History"]
+    end
+
+    subgraph AdminOps["Admin Operations"]
+        UC13["Add Food Item"]
+        UC14["Remove Food Item"]
+        UC15["List All Food"]
+        UC16["View All Orders"]
+        UC17["Update Order Status"]
+    end
+
+    Customer --> UC1
+    Customer --> UC2
+    Customer --> UC3
+    Customer --> UC4
+    Customer --> UC5
+    Customer --> UC6
+    Customer --> UC7
+    Customer --> UC8
+    Customer --> UC9
+    Customer --> UC10
+    Customer --> UC11
+    Customer --> UC12
+
+    Admin --> UC13
+    Admin --> UC14
+    Admin --> UC15
+    Admin --> UC16
+    Admin --> UC17
+
+    UC7 -.->|requires| UC2
+    UC10 -.->|requires| UC2
+    UC10 -.->|includes| UC11
+```
+
+**Glossary**
+- **Actor** — External entity (user or system) that interacts with the application.
+- **Use Case** — A discrete piece of functionality the system provides to an actor.
+- **Requires (`-.->`)** — The use case cannot be performed without the dependent one being satisfied first.
+- **Includes** — A use case always invokes another as part of its execution.
+
+---
+
+### Activity Diagram
+
+> Models the workflow of a process as a sequence of actions with decision points and forks.
+
+```mermaid
+flowchart TD
+    Start([Start]) --> Browse["Browse Menu"]
+    Browse --> Auth{Authenticated?}
+
+    Auth -- No --> Login["Login / Register"]
+    Login --> Validate{Credentials Valid?}
+    Validate -- No --> Error["Show Error Message"]
+    Error --> Login
+    Validate -- Yes --> Auth
+
+    Auth -- Yes --> AddCart["Add Items to Cart"]
+    AddCart --> ViewCart["Review Cart"]
+    ViewCart --> Address["Enter Delivery Address"]
+    Address --> Checkout["Initiate Stripe Checkout"]
+    Checkout --> Payment{Payment Success?}
+
+    Payment -- No --> PayError["Show Payment Error"]
+    PayError --> Checkout
+
+    Payment -- Yes --> SaveOrder["Save Order to Database"]
+    SaveOrder --> UpdateStatus["Set Status: Food Processing"]
+    UpdateStatus --> Confirm["Show Order Confirmation"]
+    Confirm --> End([End])
+```
+
+**Glossary**
+- **Decision Node (diamond)** — A branch point where the flow splits based on a condition.
+- **Activity** — A single step or action in the workflow.
+- **Start/End Nodes** — Represent entry and exit points of the process flow.
+
+---
+
+### Sequence Diagram — Order Placement
+
+> Shows the time-ordered interaction between objects for a specific scenario.
+
+```mermaid
+sequenceDiagram
+    actor Customer
+    participant Frontend
+    participant Backend
+    participant MongoDB
+    participant Stripe
+
+    Customer->>Frontend: Add item to cart
+    Frontend->>Backend: POST /api/cart/add (Bearer JWT)
+    Backend->>Backend: authMiddleware verifies JWT
+    Backend->>MongoDB: Update user.cartData
+    MongoDB-->>Backend: Acknowledged
+    Backend-->>Frontend: success true
+    Frontend-->>Customer: Cart count updated
+
+    Customer->>Frontend: Proceed to checkout
+    Frontend->>Backend: POST /api/order/place (Bearer JWT)
+    Backend->>MongoDB: Save order with status Food Processing and payment false
+    MongoDB-->>Backend: Order ID returned
+    Backend->>Stripe: Create checkout session with line_items and orderId
+    Stripe-->>Backend: session_url returned
+    Backend-->>Frontend: success true with session_url
+    Frontend-->>Customer: Redirect to Stripe checkout page
+
+    Customer->>Stripe: Complete payment
+    Stripe-->>Frontend: Redirect to verify page with success and orderId
+    Frontend->>Backend: POST /api/order/verify with orderId and success flag
+    Backend->>MongoDB: Update order payment true and status Out for Delivery
+    MongoDB-->>Backend: Updated
+    Backend-->>Frontend: success true
+    Frontend-->>Customer: Order confirmed screen
+```
+
+**Glossary**
+- **Participant** — An entity involved in the interaction (actor, service, or system component).
+- **Synchronous call (`->>`)** — Caller waits for the response before continuing.
+- **Return message (`-->>`)** — Response sent back from callee to caller.
+- **Bearer JWT** — Authentication scheme where the JWT token is passed in the `Authorization` HTTP header.
+- **Stripe Checkout Session** — A Stripe-hosted payment page created server-side; client is redirected to it.
+
+---
+
+### ER Diagram
+
+> Defines the data model — entities, their attributes, and how they relate to each other in the database.
+
+```mermaid
+erDiagram
+    USER {
+        ObjectId _id PK
+        String name
+        String email
+        String password
+        Object cartData
+    }
+
+    ORDER {
+        ObjectId _id PK
+        String userId FK
+        Array items
+        Number amount
+        Object address
+        String status
+        Date date
+        Boolean payment
+    }
+
+    FOOD {
+        ObjectId _id PK
+        String name
+        String description
+        Number price
+        String image
+        String category
+    }
+
+    USER ||--o{ ORDER : "places"
+    ORDER }o--o{ FOOD : "contains"
+```
+
+**Glossary**
+- **PK (Primary Key)** — Unique identifier for each document; MongoDB uses `ObjectId` by default.
+- **FK (Foreign Key)** — Reference to a document in another collection; here `userId` links an order to a user.
+- **One-to-Many (`||--o{`)** — One user can place many orders; each order belongs to one user.
+- **Many-to-Many (`}o--o{`)** — An order can contain many food items; a food item can appear in many orders.
+- **cartData** — Embedded object on `USER` storing `{ foodId: quantity }` pairs for cart persistence.
+
+---
+
+## OOP Concepts
+
+### Encapsulation
+Mongoose schemas in `backend/models/` hide internal data structure. External code interacts only through defined schema fields and controller methods — direct DB access is not exposed to routes.
+
+### Abstraction
+`frontend/src/services/` (ApiService, AuthService, CartService, FoodService, OrderService) abstract all HTTP communication. Components call `CartService.addItem()` without knowing Axios or endpoint details.
+
+### Inheritance
+All React components inherit the React component lifecycle. Custom hooks in the frontend compose shared behavior (data fetching, state updates) that multiple components inherit through the hook pattern.
+
+### Polymorphism
+`StoreContext.addToCart(itemId)` behaves differently based on whether the item already exists in the cart — it initializes a new entry or increments an existing one, both through the same method signature.
+
+---
+
+## Design Patterns
+
+### Observer Pattern
+`frontend/src/patterns/Observer.ts` — React Context acts as a subject; all subscribed components re-render when `StoreContext` state changes. Cart badge in Navbar and cart page both react to the same `cartItems` state update without direct coupling.
+
+### Factory Pattern
+`frontend/src/patterns/ServiceFactory.ts` — Centralizes creation of service instances (ApiService, AuthService, etc.), decoupling components from concrete service constructors.
+
+### Repository Pattern
+`backend/models/` act as repositories. Controllers interact with the database exclusively through Mongoose model methods (`find`, `save`, `findByIdAndDelete`), not raw queries.
+
+### Singleton Pattern
+`StoreContext` provider wraps the entire React tree exactly once — a single source of truth for `food_list`, `cartItems`, and `token` shared across all components.
+
+---
+
+## SOLID Principles
+
+**Single Responsibility** — Each controller file owns exactly one domain: `foodController` handles food CRUD, `userController` handles authentication, `orderController` handles order lifecycle.
+
+**Open/Closed** — React components accept props to change behavior without modifying component internals. New food categories or order statuses require no changes to existing components.
+
+**Liskov Substitution** — All service classes (`FoodService`, `CartService`, `OrderService`) follow the same interface contract from `ApiService`, making them interchangeable where the base interface is expected.
+
+**Interface Segregation** — Routes are split into `/api/food`, `/api/user`, `/api/cart`, `/api/order`. Clients consume only the endpoints relevant to them; no bloated catch-all routes.
+
+**Dependency Inversion** — Database URI, JWT secret, and Stripe key are injected via environment variables at runtime. High-level modules (controllers) depend on abstractions (env config), not hardcoded values.
+
+---
+
+## Setup and Installation
 
 ### Prerequisites
-- Node.js 18+ installed
-- MongoDB 5.0+ running locally or cloud connection
-- npm or yarn package manager
-- Git for version control
 
-### Installation Steps
+- Node.js 18+
+- MongoDB 5.0+ (local or Atlas)
+- npm 8+
+- Stripe account (test keys sufficient)
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/SayAn1-dls/Tomato-ts.git
-   cd Tomato-ts
-   ```
+### Clone
 
-2. **Install Backend Dependencies**
-   ```bash
-   cd backend
-   npm install
-   ```
+```bash
+git clone https://github.com/SayAn1-dls/Tomato-ts.git
+cd Tomato-ts
+```
 
-3. **Install Frontend Dependencies**
-   ```bash
-   cd ../frontend
-   npm install
-   ```
+### Backend
 
-4. **Install Admin Portal Dependencies**
-   ```bash
-   cd ../admin
-   npm install
-   ```
+```bash
+cd backend
+npm install
+cp .env.example .env   # then edit .env
+```
 
-5. **Environment Configuration**
-   ```bash
-   # In backend directory
-   cd backend
-   cp .env.example .env
-   # Update .env with your configuration:
-   MONGODB_URI=mongodb://localhost:27017/food_delivery
-   JWT_SECRET=your_jwt_secret_key_here
-   STRIPE_SECRET_KEY=your_stripe_secret_key_here
-   ```
+`.env` required keys:
 
-6. **Database Setup**
-   ```bash
-   # Start MongoDB (if running locally)
-   brew services start mongodb-community
-   # Or use MongoDB Atlas for cloud database
-   ```
+```env
+MONGODB_URI=mongodb://localhost:27017/tomato
+JWT_SECRET=your_jwt_secret
+STRIPE_SECRET_KEY=sk_test_...
+```
 
-## How to Run the Project
+### Frontend
 
-### Development Mode
+```bash
+cd ../frontend
+npm install
+cp .env.example .env
+```
 
-1. **Start Backend Server** (Terminal 1)
-   ```bash
-   cd backend
-   npm run server
-   # Backend runs on http://localhost:5002
-   ```
+`.env` required key:
 
-2. **Start Frontend Application** (Terminal 2)
-   ```bash
-   cd frontend
-   npm run dev
-   # Frontend runs on http://localhost:5173
-   ```
+```env
+VITE_API_URL=http://localhost:5002
+```
 
-3. **Start Admin Portal** (Terminal 3)
-   ```bash
-   cd admin
-   npm run dev
-   # Admin portal runs on http://localhost:5174
-   ```
+### Admin Portal
 
-### Production Build
+```bash
+cd ../admin
+npm install
+```
+
+---
+
+## Development Workflow
+
+### 1. Start All Services
+
+**Terminal 1 — Backend**
+```bash
+cd backend
+npm run server
+# Runs on http://localhost:5002
+```
+
+**Terminal 2 — Frontend**
+```bash
+cd frontend
+npm run dev
+# Runs on http://localhost:5173
+```
+
+**Terminal 3 — Admin Portal**
+```bash
+cd admin
+npm run dev
+# Runs on http://localhost:5174
+```
+
+### 2. Code Quality
+
+- **ESLint** enforces consistent style; run `npm run lint` in frontend or admin.
+- **TypeScript** type-checks components and services; run `tsc --noEmit`.
+- **Nodemon** auto-restarts the backend on file changes during development.
+
+### 3. Branch Strategy
+
+```
+main          — production-ready
+feature/*     — new features, merged via PR
+fix/*         — bug fixes
+```
+
+Commit format: `type(scope): description` — e.g. `feat(cart): add quantity selector to modal`.
+
+### 4. Production Build
+
 ```bash
 # Frontend
-cd frontend
-npm run build
+cd frontend && npm run build
 
 # Admin
-cd ../admin
-npm run build
+cd admin && npm run build
 ```
-
-## Architecture Explanation
-
-### System Design Optimization
-
-**Layered Architecture Pattern:**
-1. **Presentation Layer** - React components and UI elements
-2. **Service Layer** - Business logic and API communication  
-3. **Data Access Layer** - MongoDB models and database operations
-4. **Cross-cutting Concerns** - Authentication, logging, error handling
-
-**Performance Optimizations:**
-- **Database Indexing** - Optimized queries on frequently accessed fields
-- **Lazy Loading** - Components loaded on demand
-- **Image Optimization** - Efficient file handling and serving
-- **API Caching** - Reduced database queries through smart caching
-- **Error Handling** - Comprehensive error management with try-catch blocks
-
-**Scalability Features:**
-- **Microservices-like Structure** - Separate frontend, backend, and admin applications
-- **Modular Components** - Reusable React components
-- **RESTful API Design** - Scalable endpoint architecture
-- **Environment-based Configuration** - Easy deployment across environments
-
-## Team Members & Contributions
-
-### Sayan Bhattacharya — Lead Developer & Project Architect
-
-* Designed and implemented the complete full-stack architecture
-* Developed frontend using React with modern hooks and component-based structure
-* Built backend APIs using Express.js and MongoDB
-* Implemented secure authentication system using JWT
-* Integrated Stripe for payment processing
-* Developed file upload system for food images
-* Built admin dashboard for restaurant and order management
-* Designed and optimized database schema
-* Implemented error handling and validation across the application
-* Created responsive and modern UI
 
 ---
 
-###  Debasish Karn — Project Architect
+## Deployment
 
-* Contributed to system architecture planning and design
-* Assisted in defining scalable and maintainable project structure
-* Supported technical decision-making for backend and system flow
+Deployed on Vercel using `vercel.json` at the repo root.
 
----
+| App | URL |
+|---|---|
+| Frontend | [tomato-ts-9jwz.vercel.app](https://tomato-ts-9jwz.vercel.app/) |
+| Backend | Vercel serverless (configure separately) |
 
-###  Saswataduity Bhuin — Project Designer
-
-* Designed UI/UX of the application
-* Created user-friendly layouts and visual elements
-* Improved overall user experience and interaction flow
+Environment variables must be set in the Vercel dashboard for both frontend and backend projects.
 
 ---
 
-###  Rishav Dewan — Tester & Debugger
+## Team
 
-* Tested application features across different scenarios
-* Identified and resolved bugs in both frontend and backend
-* Ensured application stability and performance
-
----
-
-###  Siddhant Giri — Project Manager
-
-* Managed team coordination and workflow
-* Assigned tasks and tracked progress
-* Ensured timely completion of project milestones
-
+| Name | Role | Contribution |
+|---|---|---|
+| Sayan Bhattacharya | Lead Developer & Architect | Full-stack implementation, JWT auth, Stripe integration, DB schema, admin dashboard |
+| Debasish Karn | Project Architect | System architecture planning, scalable project structure, backend design decisions |
+| Saswataduity Bhuin | UI/UX Designer | Interface design, layouts, visual elements, interaction flow |
+| Rishav Dewan | Tester & Debugger | Feature testing, bug identification and resolution, stability verification |
+| Siddhant Giri | Project Manager | Team coordination, task assignment, milestone tracking |
 
 ---
 
-## Project Report (PDF)
+## License
 
-### System Design Optimization
-
-**Applied System Design Principles:**
-
-1. **Separation of Concerns**
-   - Clear separation between frontend, backend, and admin applications
-   - Modular component architecture in React
-   - Controller-model separation in backend
-
-2. **Scalability Architecture**
-   - RESTful API design for horizontal scaling
-   - Database connection pooling with Mongoose
-   - Stateless authentication using JWT tokens
-
-3. **Performance Optimization**
-   - Database indexing on frequently queried fields (email, food categories)
-   - Efficient file handling with Multer for image uploads
-   - Error handling patterns to prevent system crashes
-
-4. **Security Architecture**
-   - JWT-based authentication with secure token generation
-   - Password hashing with bcrypt
-   - Input validation with validator library
-   - CORS configuration for secure cross-origin requests
-
-### OOP Concepts Used
-
-**1. Encapsulation**
-- **Location**: `backend/models/foodModel.js`, `userModel.js`, `orderModel.js`
-- **Implementation**: Data hiding through Mongoose schemas
-```javascript
-const foodSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    description: { type: String, required: true },
-    price: { type: Number, required: true },
-    image: { type: String, required: true },
-    category: { type: String, required: true }
-});
-```
-- **Benefits**: Data integrity, controlled access to properties
-
-**2. Inheritance**
-- **Location**: React components throughout `frontend/src/components/`
-- **Implementation**: Component inheritance from React.Component
-```javascript
-// All components inherit React base functionality
-const FoodItem = () => {
-    // Component-specific logic
-}
-```
-- **Benefits**: Code reusability, consistent component behavior
-
-**3. Polymorphism**
-- **Location**: `frontend/src/Context/StoreContext.jsx`
-- **Implementation**: Dynamic method dispatch in cart operations
-```javascript
-const addToCart = async (itemId) => {
-    if (!cartItems[itemId]) {
-        setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
-    } else {
-        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    }
-};
-```
-- **Benefits**: Flexible behavior based on context
-
-**4. Abstraction**
-- **Location**: `backend/controllers/foodController.js`
-- **Implementation**: Abstract database operations through controller methods
-```javascript
-const listFood = async (req, res) => {
-    try {
-        const foods = await foodModel.find({});
-        res.json({ success: true, data: foods });
-    } catch (error) {
-        res.json({ success: false, message: "Error" });
-    }
-};
-```
-- **Benefits**: Simplified interface, hidden complexity
-
-### Design Patterns Implemented
-
-**1. Repository Pattern**
-- **Location**: `backend/models/` directory
-- **Implementation**: Data access abstraction through Mongoose models
-- **Why Used**: 
-  - Separates data access logic from business logic
-  - Provides consistent interface for database operations
-  - Enables easy testing and maintenance
-- **Benefits**: Clean separation, testability, maintainability
-
-**2. Context Pattern (React)**
-- **Location**: `frontend/src/Context/StoreContext.jsx`
-- **Implementation**: Global state management using React Context
-```javascript
-export const StoreContext = createContext(null);
-const StoreContextProvider = (props) => {
-    const contextValue = {
-        url, food_list, cartItems, addToCart, removeFromCart, // ... other values
-    };
-    return (
-        <StoreContext.Provider value={contextValue}>
-            {props.children}
-        </StoreContext.Provider>
-    );
-};
-```
-- **Why Used**:
-  - Avoids prop drilling for global state
-  - Centralized state management
-  - Efficient re-rendering with context consumers
-- **Benefits**: Scalable state management, cleaner component code
-
-**3. Controller Pattern**
-- **Location**: `backend/controllers/foodController.js`, `userController.js`
-- **Implementation**: Request handling separation
-- **Why Used**:
-  - Clean separation of concerns
-  - Consistent request/response handling
-  - Easy to test and maintain
-- **Benefits**: Organized code structure, reusability
-
-### SOLID Principles Implementation
-
-**1. Single Responsibility Principle (SRP)**
-- **Implementation**: Each controller handles one specific domain
-- **Example**: `foodController.js` only handles food-related operations
-- **Benefits**: Easier maintenance, reduced complexity
-
-**2. Open/Closed Principle (OCP)**
-- **Implementation**: Extensible React components through props
-- **Example**: FoodDisplay component can handle different food types without modification
-- **Benefits**: Code extensibility without breaking existing functionality
-
-**3. Liskov Substitution Principle (LSP)**
-- **Implementation**: React component inheritance
-- **Example**: All components can be used interchangeably where React.Component is expected
-- **Benefits**: Consistent behavior across component hierarchy
-
-**4. Interface Segregation Principle (ISP)**
-- **Implementation**: Modular API endpoints
-- **Example**: Separate routes for food, user, cart, and order operations
-- **Benefits**: Focused interfaces, reduced dependencies
-
-**5. Dependency Inversion Principle (DIP)**
-- **Implementation**: Environment-based configuration
-- **Example**: Database connection through environment variables
-- **Benefits**: Loose coupling, easy testing and deployment
-
-### UML Diagrams
-
-**Class Diagram**
-```
-FoodModel                UserModel                OrderModel
-+name: String            +name: String            +userId: String
-+description: String     +email: String           +items: Array
-+price: Number           +password: String        +amount: Number
-+image: String           +cartData: Object        +address: Object
-+category: String                                +status: String
-                                                +date: Date
-                                                +payment: Boolean
-
-FoodController           UserController           CartController
-+listFood()              +register()              +addToCart()
-+addFood()               +login()                 +removeFromCart()
-+removeFood()                                    +getCart()
-
-StoreContext
-+food_list: Array
-+cartItems: Object
-+token: String
-+addToCart()
-+removeFromCart()
-+getTotalCartAmount()
-```
-
-**Use Case Diagram**
-```
-Customer                 Admin                    System
-   |                      |                        |
-Browse Food           Manage Food           Process Orders
-Add to Cart          View Orders          Process Payments
-Place Order          Add Food Items       Send Notifications
-Track Orders         Update Status         User Authentication
-Manage Profile       View Analytics       File Management
-```
-
-**Sequence Diagram (Order Placement)**
-```
-Customer    Frontend    Backend    Database    Stripe
-   |           |           |           |           |
-Browse Food   |           |           |           |
-   |--------->|           |           |           |
-   |           Get Foods  |           |           |
-   |           |--------->|           |           |
-   |           |           Query DB  |           |
-   |           |           |--------->|           |
-   |           |           |<---------|           |
-   |           |<---------|           |           |
-   |<---------|           |           |           |
-Add to Cart   |           |           |           |
-   |--------->|           |           |           |
-   |           Update Cart|           |           |
-   |           |--------->|           |           |
-   |           |           |<---------|           |
-   |           |<---------|           |           |
-   |<---------|           |           |           |
-Place Order  |           |           |           |
-   |--------->|           |           |           |
-   |           Create Order|        |           |
-   |           |--------->|           |           |
-   |           |           Save Order|           |
-   |           |           |--------->|           |
-   |           |           |<---------|           |
-   |           |           |<---------|           |
-   |           |<---------|           |           |
-   |<---------|           |           |           |
-Process Payment|          |           |           |
-   |--------->|           |           |           |
-   |           |--------->|           |           |
-   |           |           |--------->|           |
-   |           |           |           |--------->|
-   |           |           |           |<---------|
-   |           |           |<---------|           |
-   |           |<---------|           |           |
-   |<---------|           |           |           |
-```
-
-**ER Diagram**
-```
-User                    Order                    Food
-+----------------+     +----------------+     +----------------+
-| _id (PK)       |     | _id (PK)        |     | _id (PK)        |
-| name           |<---->| userId (FK)     |     | name           |
-| email          |     | items           |     | description    |
-| password       |     | amount          |     | price          |
-| cartData       |     | address         |     | image          |
-+----------------+     | status          |     | category       |
-                       | date            |     +----------------+
-                       | payment         |             |
-                       +----------------+             |
-                                |                      |
-                                |                      |
-                                +----------------------+
-```
-
-### Problem Statement and Solution Approach
-
-**Problem Statement:**
-Modern food delivery platforms face challenges in providing seamless user experiences, efficient order management, and scalable architecture. Key issues include:
-- Complex user authentication and session management
-- Efficient cart and order processing
-- Secure payment integration
-- Real-time order tracking
-- Scalable database design
-- Admin portal for restaurant management
-
-**Solution Approach:**
-1. **Modular Architecture**: Implemented separate frontend, backend, and admin applications
-2. **State Management**: Used React Context for efficient global state management
-3. **Database Design**: Optimized MongoDB schemas with proper indexing
-4. **Security**: Implemented JWT authentication and secure payment processing
-5. **Performance**: Optimized API endpoints and database queries
-6. **User Experience**: Created responsive, intuitive interfaces
-
-### Test Cases and Results
-
-**Unit Tests**
-- **Model Validation**: Tested Mongoose schema validation
-- **Controller Logic**: Verified CRUD operations for food, user, and order management
-- **Authentication**: Tested JWT token generation and validation
-- **Cart Operations**: Verified add/remove cart item functionality
-
-**Integration Tests**
-- **API Endpoints**: Tested all REST endpoints for proper response handling
-- **Database Operations**: Verified data persistence and retrieval
-- **Payment Processing**: Tested Stripe integration (sandbox mode)
-- **File Upload**: Tested image upload and storage functionality
-
-**Test Results**
-- **Code Coverage**: 85%+ coverage across critical components
-- **Performance**: <2s response time for API endpoints
-- **Security**: All authentication endpoints properly secured
-- **Scalability**: Handles 1000+ concurrent users
-- **Error Handling**: 95% of error scenarios properly handled
-
----
-
-## Live Demo
-
-**Demo Features:**
-- **Customer Portal**: Browse menu, add to cart, place orders, track deliveries
-- **Admin Dashboard**: Manage food items, view orders, update status
-- **Real-time Updates**: Live order status and inventory management
-- **Payment Integration**: Secure Stripe payment processing
-- **Responsive Design**: Mobile and desktop compatibility
-
-**Access URLs:**
-- **Customer App**: http://localhost:5173
-- **Admin Portal**: http://localhost:5174
-- **Backend API**: http://localhost:5002
-
-**Live Demonstration:**
-During the final evaluation, I will demonstrate:
-1. User registration and login process
-2. Food browsing and cart management
-3. Order placement with payment integration
-4. Admin portal for food and order management
-5. Real-time order status updates
-6. System architecture and code organization
+MIT License. See [LICENSE](LICENSE) for details.
