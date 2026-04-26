@@ -2,7 +2,9 @@ import mongoose from "mongoose";
 
 export const  connectDB = async () =>{
 
-    await mongoose.connect(process.env.MONGODB_URI).then(()=>console.log("Connected to Mongo DB"));
+    await mongoose.connect(process.env.MONGODB_URI, {
+        dbName: process.env.MONGODB_DB_NAME || "tomato",
+    }).then(()=>console.log("Connected to Mongo DB"));
    
 }
 

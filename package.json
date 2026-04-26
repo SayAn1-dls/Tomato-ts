@@ -1,0 +1,10 @@
+{
+  "name": "tomato-ts",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install --prefix backend",
+    "server": "npm --prefix backend start",
+    "start": "npm --prefix backend start"
+  }
+}

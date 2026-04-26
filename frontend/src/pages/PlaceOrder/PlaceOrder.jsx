@@ -5,6 +5,7 @@ import { assets } from '../../assets/assets';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import formatPrice from '../../utils/formatPrice';
 
 const PlaceOrder = () => {
 
@@ -36,7 +37,7 @@ const PlaceOrder = () => {
         let orderItems = [];
         food_list.map(((item) => {
             if (cartItems[item._id] > 0) {
-                let itemInfo = item;
+                let itemInfo = { ...item };
                 itemInfo["quantity"] = cartItems[item._id];
                 orderItems.push(itemInfo)
             }
@@ -73,6 +74,7 @@ const PlaceOrder = () => {
                 navigate("/myorders")
                 toast.success(response.data.message)
                 setCartItems({});
+                localStorage.removeItem('cartItems');
             }
             else {
                 toast.error("Something Went Wrong")
@@ -115,11 +117,11 @@ const PlaceOrder = () => {
                 <div className="cart-total">
                     <h2>Cart Totals</h2>
                     <div>
-                        <div className="cart-total-details"><p>Subtotal</p><p>{currency}{getTotalCartAmount()}</p></div>
+                        <div className="cart-total-details"><p>Subtotal</p><p>{formatPrice(getTotalCartAmount(), currency)}</p></div>
                         <hr />
-                        <div className="cart-total-details"><p>Delivery Fee</p><p>{currency}{getTotalCartAmount() === 0 ? 0 : deliveryCharge}</p></div>
+                        <div className="cart-total-details"><p>Delivery Fee</p><p>{formatPrice(getTotalCartAmount() === 0 ? 0 : deliveryCharge, currency)}</p></div>
                         <hr />
-                        <div className="cart-total-details"><b>Total</b><b>{currency}{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + deliveryCharge}</b></div>
+                        <div className="cart-total-details"><b>Total</b><b>{formatPrice(getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + deliveryCharge, currency)}</b></div>
                     </div>
                 </div>
                 <div className="payment">

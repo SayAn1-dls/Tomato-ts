@@ -14,7 +14,7 @@ interface StoreContextProviderProps {
 }
 
 const StoreContextProvider: React.FC<StoreContextProviderProps> = ({ children }) => {
-  const url = "http://localhost:5002";
+  const url = import.meta.env.VITE_API_URL || "https://tomato-ts-qmzk.onrender.com";
   const [food_list, setFoodList] = useState<FoodItem[]>([]);
   const [cartItems, setCartItems] = useState<CartItem>({});
   const [token, setToken] = useState<string>("");

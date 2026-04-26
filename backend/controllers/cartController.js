@@ -48,5 +48,22 @@ const getCart = async (req, res) => {
    }
 }
 
+const setCart = async (req, res) => {
+   try {
+      const cartData = {};
+      for (const [itemId, quantity] of Object.entries(req.body.cartData || {})) {
+         const parsedQuantity = Number(quantity);
+         if (parsedQuantity > 0) {
+            cartData[itemId] = parsedQuantity;
+         }
+      }
 
-export { addToCart, removeFromCart, getCart }
+      await userModel.findByIdAndUpdate(req.body.userId, { cartData });
+      res.json({ success: true, cartData });
+   } catch (error) {
+      console.log(error);
+      res.json({ success: false, message: "Error" })
+   }
+}
+
+export { addToCart, removeFromCart, getCart, setCart }

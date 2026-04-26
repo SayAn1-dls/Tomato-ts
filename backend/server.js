@@ -73,8 +73,8 @@ app.get("/health", (req, res) => {
 // Export for Vercel
 export default app;
 
-// Start server for local development
-if (process.env.NODE_ENV !== "production") {
+// Start server everywhere except serverless Vercel functions.
+if (!process.env.VERCEL) {
   const port = process.env.PORT || 5002;
   const server = app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);

@@ -98,9 +98,10 @@ const Privacy: React.FC = () => {
             <p><strong>Last Updated:</strong> October 9, 2024</p>
             <p><strong>Effective Date:</strong> October 9, 2024</p>
           </div>
-        </div>
-    </div>
-  );
-};
+	        </div>
+	      </div>
+	    </div>
+	  );
+	};
 
 export default Privacy;

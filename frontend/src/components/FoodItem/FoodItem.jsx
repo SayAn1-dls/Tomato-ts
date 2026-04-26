@@ -3,6 +3,8 @@ import './FoodItem.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../Context/StoreContext';
 import FoodItemModal from '../FoodItemModal/FoodItemModal';
+import getImageUrl from '../../utils/imageUrl';
+import formatPrice from '../../utils/formatPrice';
 
 const FoodItem = ({ image, name, price, desc , id, category }) => {
 
@@ -13,11 +15,7 @@ const FoodItem = ({ image, name, price, desc , id, category }) => {
     const addToCart = context?.addToCart || (() => {});
     const removeFromCart = context?.removeFromCart || (() => {});
     const url = context?.url || "";
-    const currency = context?.currency || "¥";
-
-    // Debug logging
-    console.log('FoodItem - cartItems:', cartItems);
-    console.log('FoodItem - addToCart function:', typeof addToCart);
+    const currency = context?.currency || "₹";
 
     const handleItemClick = () => {
         setShowModal(true);
@@ -40,7 +38,7 @@ const FoodItem = ({ image, name, price, desc , id, category }) => {
         <>
             <div className='food-item' onClick={handleItemClick} style={{ cursor: 'pointer' }}>
                 <div className='food-item-img-container'>
-                    <img className='food-item-image' src={url+"/images/"+image} alt="" />
+                    <img className='food-item-image' src={getImageUrl(url, image)} alt="" />
                     {!cartItems[id] || cartItems[id] === 0
                     ?<img className='add' onClick={(e) => { e.stopPropagation(); addToCart(id); }} src={assets.add_icon_white} alt="" />
                     :<div className="food-item-counter">
@@ -55,7 +53,7 @@ const FoodItem = ({ image, name, price, desc , id, category }) => {
                         <p>{name}</p> <img src={assets.rating_starts} alt="" />
                     </div>
                     <p className="food-item-desc">{desc}</p>
-                    <p className="food-item-price">{currency}{price}</p>
+                    <p className="food-item-price">{formatPrice(price, currency)}</p>
                 </div>
             </div>
             {showModal && (

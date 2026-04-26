@@ -11,7 +11,7 @@ class ApiService {
 
   private constructor() {
     this.client = axios.create({
-      baseURL: 'http://localhost:5002',
+      baseURL: import.meta.env.VITE_API_URL || 'https://tomato-ts-qmzk.onrender.com',
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json',

@@ -3,6 +3,7 @@ import './Orders.css'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { assets, url, currency } from '../../assets/assets';
+import formatPrice from '../../utils/formatPrice';
 
 const Order = () => {
 
@@ -60,7 +61,7 @@ const Order = () => {
               <p className='order-item-phone'>{order.address.phone}</p>
             </div>
             <p>Items : {order.items.length}</p>
-            <p>{currency}{order.amount}</p>
+            <p>{formatPrice(order.amount, currency)}</p>
             <select onChange={(e) => statusHandler(e, order._id)} value={order.status} name="" id="">
               <option value="Food Processing">Food Processing</option>
               <option value="Out for delivery">Out for delivery</option>

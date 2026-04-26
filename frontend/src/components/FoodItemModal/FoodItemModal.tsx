@@ -3,6 +3,8 @@ import './FoodItemModal.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../Context/StoreContext'
 import { useNavigate } from 'react-router-dom'
+import getImageUrl from '../../utils/imageUrl'
+import formatPrice from '../../utils/formatPrice'
 
 interface FoodItemModalProps {
   item: {
@@ -37,49 +39,12 @@ const FoodItemModal: React.FC<FoodItemModalProps> = ({ item, onClose }) => {
   }
 
   const handleAddToCart = async () => {
-    // Add the item to cart with the specified quantity
-    const currentQuantity = cartItems[item._id] || 0;
-    const newQuantity = currentQuantity + quantity;
-    
-    console.log('FoodItemModal - Adding to cart:', item.name, 'quantity:', quantity, 'current:', currentQuantity, 'new:', newQuantity);
-    
-    // Update cart state directly with new quantity
-    if (context.setCartItems) {
-      const newCartItems = { ...cartItems, [item._id]: newQuantity };
-      context.setCartItems(newCartItems);
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
-      console.log('FoodItemModal - Cart updated:', newCartItems);
-    }
-    
-    // Also call addToCart for backend sync if token exists
-    if (context.token) {
-      for (let i = 0; i < quantity; i++) {
-        await addToCart(item._id)
-      }
-    }
-    
+    await addToCart(item._id, quantity)
     onClose()
   }
 
   const handleOrderNow = async () => {
-    // Add the item to cart with the specified quantity
-    const currentQuantity = cartItems[item._id] || 0;
-    const newQuantity = currentQuantity + quantity;
-    
-    // Update cart state directly with new quantity
-    if (context.setCartItems) {
-      const newCartItems = { ...cartItems, [item._id]: newQuantity };
-      context.setCartItems(newCartItems);
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
-    }
-    
-    // Also call addToCart for backend sync if token exists
-    if (context.token) {
-      for (let i = 0; i < quantity; i++) {
-        await addToCart(item._id)
-      }
-    }
-    
+    await addToCart(item._id, quantity)
     onClose()
     navigate('/cart')
   }
@@ -93,7 +58,7 @@ const FoodItemModal: React.FC<FoodItemModalProps> = ({ item, onClose }) => {
         
         <div className="modal-content">
           <div className="modal-image">
-            <img src={url + "/images/" + item.image} alt={item.name} />
+            <img src={getImageUrl(url, item.image)} alt={item.name} />
           </div>
           
           <div className="modal-details">
@@ -109,7 +74,7 @@ const FoodItemModal: React.FC<FoodItemModalProps> = ({ item, onClose }) => {
             
             <div className="modal-price">
               <span className="price-label">Price:</span>
-              <span className="price-value">{currency}{item.price}</span>
+              <span className="price-value">{formatPrice(item.price, currency)}</span>
             </div>
             
             <div className="modal-quantity">
@@ -131,7 +96,7 @@ const FoodItemModal: React.FC<FoodItemModalProps> = ({ item, onClose }) => {
             
             <div className="modal-total">
               <span className="total-label">Total:</span>
-              <span className="total-value">{currency}{item.price * quantity}</span>
+              <span className="total-value">{formatPrice(item.price * quantity, currency)}</span>
             </div>
             
             <div className="modal-actions">

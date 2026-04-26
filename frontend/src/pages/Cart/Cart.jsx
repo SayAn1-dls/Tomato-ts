@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import './Cart.css'
 import { StoreContext } from '../../Context/StoreContext'
 import { useNavigate } from 'react-router-dom';
+import getImageUrl from '../../utils/imageUrl';
+import formatPrice from '../../utils/formatPrice';
 
 const Cart = () => {
 
@@ -27,13 +29,6 @@ const Cart = () => {
   const currency = context?.currency || "₹";
   const deliveryCharge = context?.deliveryCharge || 50;
 
-  // Debug logging
-  console.log('Cart component - cartItems from context:', context?.cartItems);
-  console.log('Cart component - cartItems from localStorage:', getCartFromLocalStorage());
-  console.log('Cart component - food_list length:', food_list.length);
-  console.log('Cart items in cart:', Object.keys(cartItems).filter(key => parseInt(cartItems[key]) > 0));
-  console.log('Cart items with quantities:', Object.entries(cartItems));
-
   return (
     <div className='cart'>
       <div className="cart-items">
@@ -45,15 +40,14 @@ const Cart = () => {
         {food_list.length > 0 ? (
           food_list.map((item, index) => {
             const itemQuantity = parseInt(cartItems[item._id]) || 0;
-            console.log(`Rendering item ${item.name} with quantity: ${itemQuantity}`);
             if (itemQuantity > 0) {
               return (<div key={index}>
                 <div className="cart-items-title cart-items-item">
-                  <img src={url+"/images/"+item.image} alt="" />
+                  <img src={getImageUrl(url, item.image)} alt="" />
                   <p>{item.name}</p>
-                  <p>{currency}{item.price}</p>
+                  <p>{formatPrice(item.price, currency)}</p>
                   <div>{itemQuantity}</div>
-                  <p>{currency}{item.price * itemQuantity}</p>
+                  <p>{formatPrice(item.price * itemQuantity, currency)}</p>
                   <p className='cart-items-remove-icon' onClick={()=>removeFromCart(item._id)}>x</p>
                 </div>
                 <hr />
@@ -78,11 +72,11 @@ const Cart = () => {
         <div className="cart-total">
           <h2>Cart Totals</h2>
           <div>
-            <div className="cart-total-details"><p>Subtotal</p><p>{currency}{getTotalCartAmount()}</p></div>
+            <div className="cart-total-details"><p>Subtotal</p><p>{formatPrice(getTotalCartAmount(), currency)}</p></div>
             <hr />
-            <div className="cart-total-details"><p>Delivery Fee</p><p>{currency}{getTotalCartAmount()===0?0:deliveryCharge}</p></div>
+            <div className="cart-total-details"><p>Delivery Fee</p><p>{formatPrice(getTotalCartAmount()===0?0:deliveryCharge, currency)}</p></div>
             <hr />
-            <div className="cart-total-details"><b>Total</b><b>{currency}{getTotalCartAmount()===0?0:getTotalCartAmount()+deliveryCharge}</b></div>
+            <div className="cart-total-details"><b>Total</b><b>{formatPrice(getTotalCartAmount()===0?0:getTotalCartAmount()+deliveryCharge, currency)}</b></div>
           </div>
           <button onClick={()=>navigate('/order')}>PROCEED TO CHECKOUT</button>
         </div>
