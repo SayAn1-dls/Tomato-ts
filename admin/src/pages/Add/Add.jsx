@@ -23,13 +23,14 @@ const Add = () => {
             return null;
         }
 
+        const token = localStorage.getItem('adminToken');
         const formData = new FormData();
         formData.append("name", data.name);
         formData.append("description", data.description);
         formData.append("price", Number(data.price));
         formData.append("category", data.category);
         formData.append("image", image);
-        const response = await axios.post(`${url}/api/food/add`, formData);
+        const response = await axios.post(`${url}/api/food/add`, formData, { headers: { token } });
         if (response.data.success) {
             toast.success(response.data.message)
             setData({

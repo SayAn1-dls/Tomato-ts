@@ -2,13 +2,17 @@ import React from 'react'
 import './Navbar.css'
 import { assets } from '../../assets/assets'
 
-const Navbar = () => {
-  return (
-    <div className='navbar'>
-      <img className='logo' src={assets.logo} alt="" />
-      <img className='profile' src={assets.profile_image} alt="" />
-    </div>
-  )
+const Navbar = ({ onLogout }) => {
+    return (
+        <div className='navbar'>
+            <img className='logo' src={assets.logo} alt="" />
+            <div className='navbar-right'>
+                <span className='navbar-admin-label'>Admin Panel</span>
+                <button className='logout-btn' onClick={onLogout}>Logout</button>
+                <img className='profile' src={assets.profile_image} alt="" />
+            </div>
+        </div>
+    )
 }
 
 export default Navbar

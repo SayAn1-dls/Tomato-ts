@@ -1,12 +1,44 @@
-.navbar{
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 8px 4%;
 }
-.navbar .logo{
-    width: max(10%,80px);
+
+.navbar .logo {
+    width: max(10%, 80px);
 }
-.navbar .profile{
-    width: 40px;
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.navbar-admin-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #888;
+}
+
+.logout-btn {
+    padding: 6px 16px;
+    border: 1.5px solid tomato;
+    background: transparent;
+    color: tomato;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.logout-btn:hover {
+    background: tomato;
+    color: white;
+}
+
+.navbar .profile {
+    width: 36px;
+    border-radius: 50%;
 }
