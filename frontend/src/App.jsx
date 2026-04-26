@@ -7,42 +7,48 @@ import Cart from './pages/Cart/Cart'
 import LoginPopup from './components/LoginPopup/LoginPopup'
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
 import MyOrders from './pages/MyOrders/MyOrders'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import Verify from './pages/Verify/Verify'
 import About from './pages/About/About'
 import Delivery from './pages/Delivery/Delivery'
 import Privacy from './pages/Privacy/Privacy'
+import AdminApp from './pages/Admin/AdminApp'
 
-const App = () => {
-
-  const [showLogin,setShowLogin] = useState(false);
+const CustomerApp = () => {
+  const [showLogin, setShowLogin] = useState(false)
 
   return (
     <>
-    <ToastContainer/>
-    {showLogin?<LoginPopup setShowLogin={setShowLogin}/>:<></>}
+      {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
       <div className='app'>
-        <Navbar setShowLogin={setShowLogin}/>
+        <Navbar setShowLogin={setShowLogin} />
         <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/cart' element={<Cart />}/>
-          <Route path='/order' element={<PlaceOrder />}/>
-          <Route path='/myorders' element={<MyOrders />}/>
-          <Route path='/verify' element={<Verify />}/>
-          <Route path='/menu' element={<Home />}/>
-          <Route path='/mobile-app' element={<Home />}/>
-          <Route path='/contact' element={<Home />}/>
-          <Route path='/contact-us' element={<Home />}/>
-          <Route path='/about' element={<About />}/>
-          <Route path='/delivery' element={<Delivery />}/>
-          <Route path='/privacy' element={<Privacy />}/>
-          <Route path='*' element={<Home />}/>
+          <Route path='/'         element={<Home />} />
+          <Route path='/cart'     element={<Cart />} />
+          <Route path='/order'    element={<PlaceOrder />} />
+          <Route path='/myorders' element={<MyOrders />} />
+          <Route path='/verify'   element={<Verify />} />
+          <Route path='/menu'     element={<Home />} />
+          <Route path='/about'    element={<About />} />
+          <Route path='/delivery' element={<Delivery />} />
+          <Route path='/privacy'  element={<Privacy />} />
+          <Route path='*'         element={<Home />} />
         </Routes>
       </div>
       <Footer />
     </>
   )
 }
+
+const App = () => (
+  <>
+    <ToastContainer />
+    <Routes>
+      <Route path='/admin/*' element={<AdminApp />} />
+      <Route path='/*'       element={<CustomerApp />} />
+    </Routes>
+  </>
+)
 
 export default App
