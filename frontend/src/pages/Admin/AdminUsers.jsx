@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-
-const getUrl = () => import.meta.env.PROD
-    ? 'https://tomato-ts-qmzk.onrender.com'
-    : (import.meta.env.VITE_API_URL || 'http://localhost:5002')
+import { API_URL, adminHeaders } from './adminApi'
 
 const AdminUsers = () => {
     const [users, setUsers]     = useState([])
@@ -14,11 +11,10 @@ const AdminUsers = () => {
     useEffect(() => {
         const fetch = async () => {
             try {
-                const token = localStorage.getItem('adminToken')
-                const res = await axios.get(`${getUrl()}/api/admin/users`, { headers: { token } })
+                const res = await axios.get(`${API_URL}/api/admin/users`, { headers: adminHeaders() })
                 if (res.data.success) setUsers(res.data.data)
                 else toast.error('Failed to load users')
-            } catch { toast.error('Server error') }
+            } catch (err) { console.error(err); toast.error('Server error') }
             setLoading(false)
         }
         fetch()

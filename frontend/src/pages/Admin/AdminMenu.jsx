@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-
-const getUrl = () => import.meta.env.PROD
-    ? 'https://tomato-ts-qmzk.onrender.com'
-    : (import.meta.env.VITE_API_URL || 'http://localhost:5002')
+import { API_URL, adminHeaders } from './adminApi'
 
 const CATEGORIES = ['Salad', 'Rolls', 'Deserts', 'Sandwich', 'Cake', 'Pure Veg', 'Pasta', 'Noodles']
 const EMPTY_FORM = { name: '', description: '', price: '', category: 'Salad' }
@@ -12,7 +9,7 @@ const EMPTY_FORM = { name: '', description: '', price: '', category: 'Salad' }
 const getImgSrc = (image) => {
     if (!image) return ''
     if (image.startsWith('data:') || image.startsWith('http')) return image
-    return `${getUrl()}/images/${image}`
+    return `${API_URL}/images/${image}`
 }
 
 const AdminMenu = () => {
@@ -26,10 +23,8 @@ const AdminMenu = () => {
     const [editImg, setEditImg]   = useState(null)
     const [search, setSearch]     = useState('')
 
-    const token = () => localStorage.getItem('adminToken')
-
     const fetchItems = async () => {
-        const res = await axios.get(`${getUrl()}/api/food/list`)
+        const res = await axios.get(`${API_URL}/api/food/list`)
         if (res.data.success) setItems(res.data.data)
     }
 
@@ -46,7 +41,7 @@ const AdminMenu = () => {
             const fd = new FormData()
             Object.entries(form).forEach(([k, v]) => fd.append(k, k === 'price' ? Number(v) : v))
             fd.append('image', image)
-            const res = await axios.post(`${getUrl()}/api/food/add`, fd, { headers: { token: token() } })
+            const res = await axios.post(`${API_URL}/api/food/add`, fd, { headers: adminHeaders() })
             if (res.data.success) {
                 toast.success('Item added!')
                 setForm(EMPTY_FORM); setImage(null)
@@ -71,7 +66,7 @@ const AdminMenu = () => {
             fd.append('id', editItem._id)
             Object.entries(editForm).forEach(([k, v]) => fd.append(k, v))
             if (editImg) fd.append('image', editImg)
-            const res = await axios.put(`${getUrl()}/api/food/update`, fd, { headers: { token: token() } })
+            const res = await axios.put(`${API_URL}/api/food/update`, fd, { headers: adminHeaders() })
             if (res.data.success) {
                 toast.success('Updated!')
                 setEditItem(null); fetchItems()
@@ -83,7 +78,7 @@ const AdminMenu = () => {
     /* ── Delete ── */
     const deleteItem = async id => {
         if (!window.confirm('Delete this item?')) return
-        const res = await axios.post(`${getUrl()}/api/food/remove`, { id }, { headers: { token: token() } })
+        const res = await axios.post(`${API_URL}/api/food/remove`, { id }, { headers: adminHeaders() })
         if (res.data.success) { toast.success('Deleted'); fetchItems() }
         else toast.error('Delete failed')
     }

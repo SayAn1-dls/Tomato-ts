@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-
-const getUrl = () => import.meta.env.PROD
-    ? 'https://tomato-ts-qmzk.onrender.com'
-    : (import.meta.env.VITE_API_URL || 'http://localhost:5002')
+import { API_URL, adminHeaders } from './adminApi'
 
 const STATUS_OPTS = ['Food Processing', 'Out for delivery', 'Delivered']
 const FILTERS = ['All', ...STATUS_OPTS]
@@ -21,19 +18,17 @@ const AdminOrders = () => {
     const [search, setSearch]   = useState('')
     const [loading, setLoading] = useState(true)
 
-    const token = () => localStorage.getItem('adminToken')
-
     const fetchOrders = async () => {
         try {
-            const res = await axios.get(`${getUrl()}/api/order/list`, { headers: { token: token() } })
+            const res = await axios.get(`${API_URL}/api/order/list`, { headers: adminHeaders() })
             if (res.data.success) setOrders(res.data.data.reverse())
             else toast.error('Failed to load orders')
-        } catch { toast.error('Server error') }
+        } catch (err) { console.error(err); toast.error('Server error') }
         setLoading(false)
     }
 
     const updateStatus = async (orderId, status) => {
-        const res = await axios.post(`${getUrl()}/api/order/status`, { orderId, status }, { headers: { token: token() } })
+        const res = await axios.post(`${API_URL}/api/order/status`, { orderId, status }, { headers: adminHeaders() })
         if (res.data.success) fetchOrders()
         else toast.error('Update failed')
     }
