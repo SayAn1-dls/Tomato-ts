@@ -15,11 +15,11 @@ export class OrderService {
   /**
    * Place new order
    */
-  async placeOrder(orderData: any): Promise<{ success: boolean; sessionUrl?: string; error?: string }> {
+  async placeOrder(orderData: any): Promise<{ success: boolean; paymentData?: any; paymentUrl?: string; error?: string }> {
     try {
       const response = await this.apiService.post('/api/order/place', orderData);
       if (response.success) {
-        return { success: true, sessionUrl: response.data?.session_url };
+        return { success: true, paymentData: response.data?.payment_data, paymentUrl: response.data?.payment_url };
       }
       return { success: false, error: response.message || 'Failed to place order' };
     } catch (error: any) {

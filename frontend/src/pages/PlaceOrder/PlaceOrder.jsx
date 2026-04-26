@@ -47,11 +47,22 @@ const PlaceOrder = () => {
             items: orderItems,
             amount: getTotalCartAmount() + deliveryCharge,
         }
-        if (payment === "stripe") {
+        if (payment === "easebuzz") {
             let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
             if (response.data.success) {
-                const { session_url } = response.data;
-                window.location.replace(session_url);
+                const { payment_data, payment_url } = response.data;
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = payment_url;
+                Object.entries(payment_data).forEach(([k, v]) => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = k;
+                    input.value = v;
+                    form.appendChild(input);
+                });
+                document.body.appendChild(form);
+                form.submit();
             }
             else {
                 toast.error("Something Went Wrong")
@@ -119,12 +130,12 @@ const PlaceOrder = () => {
                         <img src={payment === "cod" ? assets.checked : assets.un_checked} alt="" />
                         <p>COD ( Cash on delivery )</p>
                     </div>
-                    <div onClick={() => setPayment("stripe")} className="payment-option">
-                        <img src={payment === "stripe" ? assets.checked : assets.un_checked} alt="" />
-                        <p>Stripe ( Credit / Debit )</p>
+                    <div onClick={() => setPayment("easebuzz")} className="payment-option">
+                        <img src={payment === "easebuzz" ? assets.checked : assets.un_checked} alt="" />
+                        <p>Online Payment ( Credit / Debit / UPI )</p>
                     </div>
                 </div>
-                <button className='place-order-submit' type='submit'>{payment==="cod"?"Place Order":"Proceed To Payment"}</button>
+                <button className='place-order-submit' type='submit'>{payment === "cod" ? "Place Order" : "Proceed To Payment"}</button>
             </div>
         </form>
     )
