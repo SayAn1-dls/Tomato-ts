@@ -17,14 +17,18 @@ const listFood = async (req, res) => {
 const addFood = async (req, res) => {
 
     try {
-        let image_filename = `${req.file.filename}`
+        if (!req.file) {
+            return res.json({ success: false, message: "Image is required" })
+        }
+
+        const image = `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`
 
         const food = new foodModel({
             name: req.body.name,
             description: req.body.description,
             price: req.body.price,
             category:req.body.category,
-            image: image_filename,
+            image,
         })
 
         await food.save();
@@ -40,7 +44,9 @@ const removeFood = async (req, res) => {
     try {
 
         const food = await foodModel.findById(req.body.id);
-        fs.unlink(`uploads/${food.image}`, () => { })
+        if (food?.image && !food.image.startsWith("data:") && !food.image.startsWith("http")) {
+            fs.unlink(`uploads/${food.image}`, () => { })
+        }
 
         await foodModel.findByIdAndDelete(req.body.id)
         res.json({ success: true, message: "Food Removed" })

@@ -10,6 +10,9 @@ import MyOrders from './pages/MyOrders/MyOrders'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify/Verify'
+import About from './pages/About/About'
+import Delivery from './pages/Delivery/Delivery'
+import Privacy from './pages/Privacy/Privacy'
 
 const App = () => {
 
@@ -27,6 +30,14 @@ const App = () => {
           <Route path='/order' element={<PlaceOrder />}/>
           <Route path='/myorders' element={<MyOrders />}/>
           <Route path='/verify' element={<Verify />}/>
+          <Route path='/menu' element={<Home />}/>
+          <Route path='/mobile-app' element={<Home />}/>
+          <Route path='/contact' element={<Home />}/>
+          <Route path='/contact-us' element={<Home />}/>
+          <Route path='/about' element={<About />}/>
+          <Route path='/delivery' element={<Delivery />}/>
+          <Route path='/privacy' element={<Privacy />}/>
+          <Route path='*' element={<Home />}/>
         </Routes>
       </div>
       <Footer />
