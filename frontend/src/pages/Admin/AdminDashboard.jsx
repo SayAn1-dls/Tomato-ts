@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-
-const getUrl = () => import.meta.env.PROD
-    ? 'https://tomato-ts-qmzk.onrender.com'
-    : (import.meta.env.VITE_API_URL || 'http://localhost:5002')
+import { API_URL, adminHeaders } from './adminApi'
 
 const StatCard = ({ label, value, color, prefix = '' }) => (
     <div className="admin-stat-card" style={{ borderTopColor: color }}>
@@ -20,11 +17,13 @@ const AdminDashboard = () => {
     useEffect(() => {
         const fetch = async () => {
             try {
-                const token = localStorage.getItem('adminToken')
-                const res = await axios.get(`${getUrl()}/api/admin/stats`, { headers: { token } })
+                const res = await axios.get(`${API_URL}/api/admin/stats`, { headers: adminHeaders() })
                 if (res.data.success) setStats(res.data.data)
-                else toast.error('Failed to load stats')
-            } catch { toast.error('Server error') }
+                else toast.error(res.data.message || 'Failed to load stats')
+            } catch (err) {
+                toast.error('Server error — check backend is running')
+                console.error(err)
+            }
             setLoading(false)
         }
         fetch()
@@ -36,16 +35,16 @@ const AdminDashboard = () => {
         <div>
             <h2 className="admin-page-title">Dashboard</h2>
             <div className="admin-stats-grid">
-                <StatCard label="Total Orders"    value={stats?.totalOrders}   color="#FF6347" />
-                <StatCard label="Paid Orders"     value={stats?.paidOrders}    color="#22c55e" />
-                <StatCard label="Revenue"         value={stats?.totalRevenue != null ? parseFloat(stats.totalRevenue).toFixed(2) : 0} prefix="₹" color="#3b82f6" />
-                <StatCard label="Menu Items"      value={stats?.menuItems}     color="#f59e0b" />
-                <StatCard label="Registered Users" value={stats?.totalUsers}   color="#8b5cf6" />
+                <StatCard label="Total Orders"     value={stats?.totalOrders}   color="#FF6347" />
+                <StatCard label="Paid Orders"      value={stats?.paidOrders}    color="#22c55e" />
+                <StatCard label="Revenue"          value={stats?.totalRevenue != null ? parseFloat(stats.totalRevenue).toFixed(2) : 0} prefix="₹" color="#3b82f6" />
+                <StatCard label="Menu Items"       value={stats?.menuItems}     color="#f59e0b" />
+                <StatCard label="Registered Users" value={stats?.totalUsers}    color="#8b5cf6" />
             </div>
             <div className="admin-stats-grid">
-                <StatCard label="Processing"      value={stats?.pendingOrders}    color="#f59e0b" />
+                <StatCard label="Processing"       value={stats?.pendingOrders}   color="#f59e0b" />
                 <StatCard label="Out for Delivery" value={stats?.outForDelivery}  color="#3b82f6" />
-                <StatCard label="Delivered"       value={stats?.delivered}         color="#22c55e" />
+                <StatCard label="Delivered"        value={stats?.delivered}        color="#22c55e" />
             </div>
         </div>
     )

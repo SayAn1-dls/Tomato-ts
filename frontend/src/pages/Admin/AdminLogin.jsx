@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { API_URL } from './adminApi'
 import './admin.css'
-
-const getUrl = () => {
-    if (import.meta.env.PROD) return 'https://tomato-ts-qmzk.onrender.com'
-    return import.meta.env.VITE_API_URL || 'http://localhost:5002'
-}
 
 const AdminLogin = ({ onLogin }) => {
     const [data, setData] = useState({ email: '', password: '' })
@@ -18,7 +14,7 @@ const AdminLogin = ({ onLogin }) => {
         e.preventDefault()
         setLoading(true)
         try {
-            const res = await axios.post(`${getUrl()}/api/admin/login`, data)
+            const res = await axios.post(`${API_URL}/api/admin/login`, data)
             if (res.data.success) {
                 localStorage.setItem('adminToken', res.data.token)
                 toast.success('Welcome back!')
