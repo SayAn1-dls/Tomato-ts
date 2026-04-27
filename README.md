@@ -3,7 +3,7 @@
 Full-stack food ordering application built with React, Node.js, and MongoDB. Supports menu browsing, cart management, Stripe payments, and an admin portal for restaurant management.
 
 **Live:** [tomato-ts-9jwz.vercel.app](https://tomato-ts-9jwz.vercel.app/)
-
+Project Report : https://docs.google.com/document/d/1PM0NlE8mo6EErPoa8tInHh38CQy28wb3zNlhKItyexo/edit?usp=sharing
 ---
 
 ## Table of Contents
