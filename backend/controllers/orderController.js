@@ -15,7 +15,7 @@ const generateHash = ({ key, txnid, amount, productinfo, firstname, email, salt 
 };
 
 const verifyResponseHash = ({ salt, status, email, firstname, productinfo, amount, txnid, key }) => {
-    const str = `${salt}|${status}|||||||||||${email}|${firstname}|${productinfo}|${amount}|${txnid}|${key}`;
+    const str = `${salt}|${status}|||||${email}|${firstname}|${productinfo}|${amount}|${txnid}|${key}`;
     return crypto.createHash('sha512').update(str).digest('hex');
 };
 
@@ -138,19 +138,4 @@ const updateStatus = async (req, res) => {
     }
 };
 
-const verifyOrder = async (req, res) => {
-    const { orderId, success } = req.body;
-    try {
-        if (success === "true") {
-            await orderModel.findByIdAndUpdate(orderId, { payment: true });
-            res.json({ success: true, message: "Paid" });
-        } else {
-            await orderModel.findByIdAndDelete(orderId);
-            res.json({ success: false, message: "Not Paid" });
-        }
-    } catch (error) {
-        res.json({ success: false, message: "Not Verified" });
-    }
-};
-
-export { placeOrder, easebuzzCallback, listOrders, userOrders, updateStatus, verifyOrder, placeOrderCod };
+export { placeOrder, easebuzzCallback, listOrders, userOrders, updateStatus, placeOrderCod };
