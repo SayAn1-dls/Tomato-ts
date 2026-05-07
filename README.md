@@ -1,4 +1,6 @@
-# 🔥 Crave — Food Delivery Platform
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:ff512f,50:dd2476,100:1a2a6c&text=CRAVE&fontAlign=50&fontAlignY=38&fontSize=72&fontColor=ffffff&animation=fadeIn&desc=Food%20Delivery%20Platform&descAlignY=60&descAlign=50" alt="Crave banner"/>
+</p>
 
 <div align="center">
 
@@ -7,6 +9,7 @@
 Full-stack food ordering application built with React, Node.js, and MongoDB.  
 Supports menu browsing, cart management, Stripe payments, and an admin portal for restaurant management.
 
+[![snake gif](https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake-dark.svg)](https://github.com/SayAn1-dls)
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Poppins&weight=600&size=24&pause=1200&color=FF4D4F&center=true&vCenter=true&width=700&lines=Welcome+to+Crave;Order+Fast+%7C+Track+Live+%7C+Pay+Securely;Built+with+React+%2B+Node+%2B+MongoDB)](https://git.io/typing-svg)
 [![Live Demo](https://img.shields.io/badge/Live-Demo-ff4d4f?style=for-the-badge&logo=vercel&logoColor=white)](https://tomato-ts-9jwz.vercel.app/)
 [![Frontend](https://img.shields.io/badge/Frontend-React%20%2B%20TypeScript-20232a?style=for-the-badge&logo=react)](#tech-stack)
@@ -15,6 +18,15 @@ Supports menu browsing, cart management, Stripe payments, and an admin portal fo
 [![Payments](https://img.shields.io/badge/Payments-Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white)](#sequence-diagram--order-placement)
 
 </div>
+
+<p align="center">
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWJxOHNpd3N2b2l5bTQwMXRuY2Q3N2swN3M4czVjczI4dnhjZnRybiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o7aD2saalBwwftBIY/giphy.gif" width="49%" alt="food animation"/>
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDR4N3h3bzRudm5mM2h2aWJvcnNzbGZnY2M4enVnOWYwM3lnbjQ3dSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0MYt5jPR6QX5pnqM/giphy.gif" width="49%" alt="delivery animation"/>
+</p>
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:ff4d4f,100:8e2de2&height=2&section=header&reversal=true" width="100%"/>
+</p>
 
 ---
 
