@@ -1,29 +1,57 @@
-# Tomato — Food Delivery Platform
+# 🍅 Tomato — Food Delivery Platform
 
-Full-stack food ordering application built with React, Node.js, and MongoDB. Supports menu browsing, cart management, Stripe payments, and an admin portal for restaurant management.
+<div align="center">
 
-**Live:** [tomato-ts-9jwz.vercel.app](https://tomato-ts-9jwz.vercel.app/)
+### ⚡ Fast. Modern. Full-Stack. Production-Ready.
 
-# **Project Report :** [Link](https://docs.google.com/document/d/1PM0NlE8mo6EErPoa8tInHh38CQy28wb3zNlhKItyexo/edit?usp=sharing)
----
+Full-stack food ordering application built with React, Node.js, and MongoDB.  
+Supports menu browsing, cart management, Stripe payments, and an admin portal for restaurant management.
 
-## Table of Contents
+[![Live Demo](https://img.shields.io/badge/Live-Demo-ff4d4f?style=for-the-badge&logo=vercel&logoColor=white)](https://tomato-ts-9jwz.vercel.app/)
+[![Frontend](https://img.shields.io/badge/Frontend-React%20%2B%20TypeScript-20232a?style=for-the-badge&logo=react)](#tech-stack)
+[![Backend](https://img.shields.io/badge/Backend-Node%20%2B%20Express-339933?style=for-the-badge&logo=node.js&logoColor=white)](#tech-stack)
+[![Database](https://img.shields.io/badge/Database-MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](#tech-stack)
+[![Payments](https://img.shields.io/badge/Payments-Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white)](#sequence-diagram--order-placement)
 
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [System Architecture](#system-architecture)
-- [UML Diagrams](#uml-diagrams)
-- [OOP Concepts](#oop-concepts)
-- [Design Patterns](#design-patterns)
-- [SOLID Principles](#solid-principles)
-- [Setup and Installation](#setup-and-installation)
-- [Development Workflow](#development-workflow)
-- [Deployment](#deployment)
-- [Team](#team)
+</div>
 
 ---
 
-## Tech Stack
+## 🚀 Quick Links
+
+- **Live:** [tomato-ts-9jwz.vercel.app](https://tomato-ts-9jwz.vercel.app/)
+- **Project Report:** [Open Document](https://docs.google.com/document/d/1PM0NlE8mo6EErPoa8tInHh38CQy28wb3zNlhKItyexo/edit?usp=sharing)
+
+---
+
+## 📚 Table of Contents
+
+- [🧰 Tech Stack](#tech-stack)
+- [🗂️ Project Structure](#project-structure)
+- [🏗️ System Architecture](#system-architecture)
+- [📐 UML Diagrams](#uml-diagrams)
+- [🧠 OOP Concepts](#oop-concepts)
+- [🧩 Design Patterns](#design-patterns)
+- [✅ SOLID Principles](#solid-principles)
+- [⚙️ Setup and Installation](#setup-and-installation)
+- [🛠️ Development Workflow](#development-workflow)
+- [🌐 Deployment](#deployment)
+- [👥 Team](#team)
+
+---
+
+## 🔥 Why This Project Stands Out
+
+- 🎯 Clean three-tier architecture with clear contracts between client, server, and data layer
+- 🛒 Complete e-commerce flow: browse → cart → checkout → order verification
+- 💳 Real Stripe checkout integration with backend session creation and payment verification
+- 🔐 JWT-based auth with protected cart and order operations
+- 🧩 Structured with OOP, SOLID, and reusable service abstractions
+- 🧑‍💼 Dedicated admin portal for food and order management
+
+---
+
+## 🧰 Tech Stack
 
 | Layer | Technology | Version |
 |---|---|---|
@@ -48,7 +76,7 @@ Full-stack food ordering application built with React, Node.js, and MongoDB. Sup
 
 ---
 
-## Project Structure
+## 🗂️ Project Structure
 
 ```
 Tomato-ts/
@@ -94,7 +122,7 @@ Tomato-ts/
 
 ---
 
-## System Architecture
+## 🏗️ System Architecture
 
 > **Three-tier architecture** — presentation, business logic, and data are separated into distinct layers with clear contracts between them.
 
@@ -135,7 +163,7 @@ graph TB
 
 ---
 
-## UML Diagrams
+## 📐 UML Diagrams
 
 ### Class Diagram
 
@@ -440,7 +468,7 @@ erDiagram
 
 ---
 
-## OOP Concepts
+## 🧠 OOP Concepts
 
 ### Encapsulation
 Mongoose schemas in `backend/models/` hide internal data structure. External code interacts only through defined schema fields and controller methods — direct DB access is not exposed to routes.
@@ -456,7 +484,7 @@ All React components inherit the React component lifecycle. Custom hooks in the 
 
 ---
 
-## Design Patterns
+## 🧩 Design Patterns
 
 ### Observer Pattern
 `frontend/src/patterns/Observer.ts` — React Context acts as a subject; all subscribed components re-render when `StoreContext` state changes. Cart badge in Navbar and cart page both react to the same `cartItems` state update without direct coupling.
@@ -472,7 +500,7 @@ All React components inherit the React component lifecycle. Custom hooks in the 
 
 ---
 
-## SOLID Principles
+## ✅ SOLID Principles
 
 **Single Responsibility** — Each controller file owns exactly one domain: `foodController` handles food CRUD, `userController` handles authentication, `orderController` handles order lifecycle.
 
@@ -486,7 +514,7 @@ All React components inherit the React component lifecycle. Custom hooks in the 
 
 ---
 
-## Setup and Installation
+## ⚙️ Setup and Installation
 
 ### Prerequisites
 
@@ -541,7 +569,7 @@ npm install
 
 ---
 
-## Development Workflow
+## 🛠️ Development Workflow
 
 ### 1. Start All Services
 
@@ -594,7 +622,7 @@ cd admin && npm run build
 
 ---
 
-## Deployment
+## 🌐 Deployment
 
 Deployed on Vercel using `vercel.json` at the repo root.
 
@@ -607,18 +635,16 @@ Environment variables must be set in the Vercel dashboard for both frontend and 
 
 ---
 
-## Team
+## 👥 Team
 
 | Name | Role | Contribution |
 |---|---|---|
 | Sayan Bhattacharya | Lead Developer & Architect | Full-stack implementation, JWT auth, Stripe integration, DB schema, admin dashboard |
 | Debasish Karn | Project Architect | System architecture planning, scalable project structure, backend design decisions |
-| Saswataduity Bhuin | UI/UX Designer | Interface design, layouts, visual elements, interaction flow |
 | Rishav Dewan | Tester & Debugger | Feature testing, bug identification and resolution, stability verification |
-| Siddhant Giri | Project Manager | Team coordination, task assignment, milestone tracking |
 
 ---
 
-## License
+## 📄 License
 
 MIT License. See [LICENSE](LICENSE) for details.
