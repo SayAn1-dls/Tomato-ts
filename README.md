@@ -1,4 +1,4 @@
-# 🍅 Tomato — Food Delivery Platform
+# 🔥 Crave — Food Delivery Platform
 
 <div align="center">
 
@@ -7,6 +7,7 @@
 Full-stack food ordering application built with React, Node.js, and MongoDB.  
 Supports menu browsing, cart management, Stripe payments, and an admin portal for restaurant management.
 
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Poppins&weight=600&size=24&pause=1200&color=FF4D4F&center=true&vCenter=true&width=700&lines=Welcome+to+Crave;Order+Fast+%7C+Track+Live+%7C+Pay+Securely;Built+with+React+%2B+Node+%2B+MongoDB)](https://git.io/typing-svg)
 [![Live Demo](https://img.shields.io/badge/Live-Demo-ff4d4f?style=for-the-badge&logo=vercel&logoColor=white)](https://tomato-ts-9jwz.vercel.app/)
 [![Frontend](https://img.shields.io/badge/Frontend-React%20%2B%20TypeScript-20232a?style=for-the-badge&logo=react)](#tech-stack)
 [![Backend](https://img.shields.io/badge/Backend-Node%20%2B%20Express-339933?style=for-the-badge&logo=node.js&logoColor=white)](#tech-stack)
@@ -79,7 +80,7 @@ Supports menu browsing, cart management, Stripe payments, and an admin portal fo
 ## 🗂️ Project Structure
 
 ```
-Tomato-ts/
+Crave/
 ├── backend/
 │   ├── config/
 │   │   └── db.js                  # MongoDB connection
@@ -527,7 +528,7 @@ All React components inherit the React component lifecycle. Custom hooks in the 
 
 ```bash
 git clone https://github.com/SayAn1-dls/Tomato-ts.git
-cd Tomato-ts
+cd Crave
 ```
 
 ### Backend
